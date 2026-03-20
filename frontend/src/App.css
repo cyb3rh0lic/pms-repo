@@ -1,38 +1,215 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f0f2f5;
+  color: #333;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.app {
+  display: flex;
   min-height: 100vh;
+}
+
+/* 사이드바 */
+.sidebar {
+  width: 220px;
+  background: #1a1f36;
+  padding: 24px 16px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  gap: 8px;
+  position: fixed;
+  height: 100vh;
+}
+
+.logo {
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+}
+
+.nav-item {
+  color: #8892b0;
+  text-decoration: none;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: all 0.2s;
+}
+
+.nav-item:hover {
+  background: #2d3454;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.nav-item.active {
+  background: #4f6ef7;
+  color: white;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* 메인 컨텐츠 */
+.content {
+  margin-left: 220px;
+  padding: 32px;
+  flex: 1;
+}
+
+/* 페이지 공통 */
+.page-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 24px;
+  color: #1a1f36;
+}
+
+/* 카드 */
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  margin-bottom: 24px;
+}
+
+/* 통계 카드 그리드 */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.stat-label {
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 8px;
+}
+
+.stat-value {
+  font-size: 32px;
+  font-weight: bold;
+  color: #1a1f36;
+}
+
+/* 테이블 */
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  text-align: left;
+  padding: 12px 16px;
+  background: #f8f9fa;
+  font-size: 13px;
+  color: #666;
+  border-bottom: 1px solid #eee;
+}
+
+td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 14px;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tr:hover td {
+  background: #fafafa;
+}
+
+/* 상태 배지 */
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.badge-available  { background: #e8f5e9; color: #2e7d32; }
+.badge-occupied   { background: #fff3e0; color: #e65100; }
+.badge-cleaning   { background: #e3f2fd; color: #1565c0; }
+.badge-maintenance{ background: #fce4ec; color: #880e4f; }
+.badge-confirmed  { background: #f3e5f5; color: #6a1b9a; }
+.badge-checked_in { background: #e8f5e9; color: #2e7d32; }
+.badge-checked_out{ background: #eceff1; color: #455a64; }
+.badge-cancelled  { background: #ffebee; color: #c62828; }
+
+/* 버튼 */
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+
+.btn:hover { opacity: 0.85; }
+.btn-primary  { background: #4f6ef7; color: white; }
+.btn-success  { background: #43a047; color: white; }
+.btn-warning  { background: #fb8c00; color: white; }
+.btn-danger   { background: #e53935; color: white; }
+.btn-sm { padding: 5px 12px; font-size: 13px; }
+
+/* 폼 */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 13px;
+  color: #666;
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group select {
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #4f6ef7;
+}
+
+.form-actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
 }
