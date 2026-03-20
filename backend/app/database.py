@@ -5,8 +5,8 @@ from dotenv import load_dotenv
 import os
 from urllib.parse import quote_plus
 
-
-load_dotenv()
+env_path = Path(__file__).parent.parent / ".env"
+load_dotenv(dotenv_path=env_path)
 
 DB_HOST = os.getenv("DB_HOST", "192.168.80.60")
 DB_PORT = os.getenv("DB_PORT", "3306")
