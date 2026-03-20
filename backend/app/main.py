@@ -1,11 +1,16 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .database import engine, Base
-from .routers import rooms, reservations
+from .routers import rooms, reservations, guests, housekeeping
 
-Base.metadata.create_all(bind=engine)   # 서버 시작 시 테이블 자동 생성
+Base.metadata.create_all(bind=engine)
 
-app = FastAPI(title="Hotel PMS API", version="1.0.0")
+app = FastAPI(
+    title="Hotel PMS API",
+    version="1.0.0",
+    docs_url=None,
+    redoc_url=None
+)
 
 app.add_middleware(
     CORSMiddleware,
@@ -17,6 +22,8 @@ app.add_middleware(
 
 app.include_router(rooms.router)
 app.include_router(reservations.router)
+app.include_router(guests.router)
+app.include_router(housekeeping.router)
 
 @app.get("/")
 def root():
